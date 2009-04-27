@@ -1,7 +1,0 @@
-= eye
-
-Description goes here.
-
-== Copyright
-
-Copyright (c) 2009 Run Paint Run Run. See LICENSE for details.
