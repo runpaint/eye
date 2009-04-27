@@ -33,10 +33,14 @@ describe "Eye.type" do
 
   it "causes a Hash to be used as the eye if equal to :hash" do
     eye = Eye.new(:type => :hash)
-    eye.eye.is_a?(Hash).should == true
+    eye.eye.is_a?(::Hash).should == true
     eye = Eye.new
-    eye.eye.is_a?(Hash).should == true  
+    eye.eye.is_a?(::Hash).should == true  
   end
 
+  it "causes an Array to be used as the eye if equal to :array" do
+    eye = Eye.new(:type => :array)
+    eye.eye.is_a?(Array).should == true
+  end
 end
 

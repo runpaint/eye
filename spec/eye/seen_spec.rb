@@ -22,18 +22,24 @@ describe "Eye.seen?" do
   end
   
   it "returns true if .see(obj) has been called previously" do
-    ['Kim', 'http://example.com/'].each do |obj|
-      @eye.see obj
-      @eye.seen?(obj).should == true
+    [:array, :hash].each do |type|
+      eye = Eye.new(:type => type)
+      ['Kim', 'http://example.com/'].each do |obj|
+        eye.see obj
+        eye.seen?(obj).should == true
+      end
+      eye.seen?('Kim').should == true
     end
-    @eye.seen?('Kim').should == true
   end
   
   it "returns false unless .see(obj) has been called previously" do  
-    ['The Tao of Pooh', 29, 30.3].each do |obj|
-      @eye.seen?(obj).should == false
-    end
-    @eye.seen?(29).should == false
+    [:array, :hash].each do |type|
+      eye = Eye.new(:type => type)
+      ['The Tao of Pooh', 29, 30.3].each do |obj|
+        eye.seen?(obj).should == false
+      end
+      eye.seen?(29).should == false
+    end  
   end
 
 end
