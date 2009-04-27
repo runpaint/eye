@@ -50,8 +50,9 @@ class Eye
   class BloomFilter
     require 'bloomfilter'
     attr_reader :eye
-    def initialize
-      @eye = ::BloomFilter.new(100)
+    SIZE = 10000
+    def initialize(size=nil)
+      @eye = ::BloomFilter.new(size || SIZE)
     end
     def see(obj)
       true if @eye.add obj.to_s
