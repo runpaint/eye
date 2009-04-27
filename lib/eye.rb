@@ -1,6 +1,6 @@
 class Eye
   DEFAULT_TYPE = :hash
-  attr_reader :type
+  attr_reader :type, :eye
   def initialize(args={})
     unless args.empty?
       raise ArgumentError unless Hash === args
