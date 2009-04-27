@@ -8,7 +8,11 @@ class Eye
       raise ArgumentError unless Symbol === args.values.first
     end       
     @type = args.key?(:type) ? args[:type] : DEFAULT_TYPE
-    @eye = self.class.const_get( @type.to_s.capitalize ).new
+    begin
+      @eye = self.class.const_get( @type.to_s.capitalize ).new
+    rescue NameError
+      raise ArgumentError, "#{@type} is an invalid type"
+    end  
   end
   
   def method_missing(method, *args)

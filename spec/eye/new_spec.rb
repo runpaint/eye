@@ -24,4 +24,7 @@ describe "Eye.new" do
     lambda{Eye.new(:f => :bar, :b => :foo)}.should raise_error(ArgumentError)
   end
 
+  it "raises an ArgumentError exception on invalid types" do
+    lambda{Eye.new(:type => :foo)}.should raise_error(ArgumentError)
+  end 
 end
