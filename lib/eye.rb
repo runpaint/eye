@@ -1,7 +1,7 @@
 class Eye
   DEFAULT_TYPE = :hash
   attr_reader :type
-  def initialize(args={})
+  def initialize(args={}, *their_args)
     unless args.empty?
       raise ArgumentError unless ::Hash === args
       raise ArgumentError if args.keys.size != 1 || args.keys.first != :type
@@ -9,7 +9,8 @@ class Eye
     end       
     @type = args.key?(:type) ? args[:type] : DEFAULT_TYPE
     begin
-      @eye = self.class.const_get( @type.to_s.gsub(/(^|_)(.)/){$2.upcase} ).new
+      @eye = self.class.const_get( @type.to_s.gsub(/(^|_)(.)/){$2.upcase} ).
+        new(*their_args.flatten)
     rescue NameError
       raise ArgumentError, "#{@type} is an invalid type"
     end  
