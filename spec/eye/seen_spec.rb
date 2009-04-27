@@ -22,7 +22,7 @@ describe "Eye.seen?" do
   end
   
   it "returns true if .see(obj) has been called previously" do
-    [:array, :hash].each do |type|
+    [:array, :hash, :bloom_filter].each do |type|
       eye = Eye.new(:type => type)
       ['Kim', 'http://example.com/'].each do |obj|
         eye.see obj
@@ -33,7 +33,7 @@ describe "Eye.seen?" do
   end
   
   it "returns false unless .see(obj) has been called previously" do  
-    [:array, :hash].each do |type|
+    [:array, :hash, :bloom_filter].each do |type|
       eye = Eye.new(:type => type)
       ['The Tao of Pooh', 29, 30.3].each do |obj|
         eye.seen?(obj).should == false

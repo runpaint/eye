@@ -42,5 +42,10 @@ describe "Eye.type" do
     eye = Eye.new(:type => :array)
     eye.eye.is_a?(Array).should == true
   end
+
+  it "causes a BloomFilter to be used as the eye if equal to :bloom_filter" do
+    eye = Eye.new(:type => :bloom_filter)
+    eye.eye.is_a?(BloomFilter).should == true
+  end
 end
 
